@@ -31,6 +31,7 @@ public class WebDrivingTwo {
         // all elements on a page that consist tap <p>
         List<WebElement> listOfP = driver.findElements(By.cssSelector("p"));
         List<WebElement> listH5 = driver.findElements(By.cssSelector("h5"));
+        List<WebElement> allStarsDiv = driver.findElements(By.cssSelector("div"));
 //        num of feedback and name of the owner
         for (WebElement w: listH5){
             if(w != null){
@@ -52,14 +53,14 @@ public class WebDrivingTwo {
         driver.quit();
 
     }
-// Clean Strind from "\n"
-//    TODO
-    public static String clearStr(String string){
-        char[] strArr = string.toCharArray();
-        for (char s: strArr){
 
-        }
-        return null;
+//    Stars <div>
+    public static String countStarsInFeedBack(){
+        return  null;
+    }
+// Clean Strind from "\n"
+    public static String clearStr(String string){
+        return string.replace("\n", " ");
     }
 //    check the tag on
     public static void checkTheTagAndText(String regexp , List<WebElement> webElements){
@@ -67,6 +68,9 @@ public class WebDrivingTwo {
             if(w != null){
                 String textTag = w.getAttribute("data-marker");
                 String text = w.getText();
+//                Убираем перенос строки если есть
+                text = clearStr(text);
+
                 if(textTag != null && text != null
                         && isInString(regexp, textTag)){
 //                    gen num of the feedback
