@@ -50,14 +50,41 @@ public class WebDrivingTwo {
 //        Check all <p> to join String текст
         checkTheTagAndText("re..+/text$", listOfP);
 
+//        Добавляем звезды
+        countStarsInFeedBack(allStarsDiv);
+
         driver.quit();
 
     }
 
 //   Todo Stars <div>
-    public static String countStarsInFeedBack(){
+    public static void countStarsInFeedBack(List<WebElement> starsList){
+        Map<String, Integer> collectStars = new HashMap<>();
+        for (WebElement w: starsList) {
+            String starTag = w.getAttribute("data-marker");
+            if (starTag != null && isInString("^re..+star.$", starTag)) {
+                String num = getStringByRegexp("(\\d++)", starTag);
+                System.out.println(num);
+//                порядковый номер звезды
+                String numOfStar = starTag.substring(starTag.length()-1);
+                String starStat  =  w.findElement(By.cssSelector("path")).getAttribute("fill");
+//                System.out.println("Отзыв= " + num + " номер звезды= " + numOfStar + " fill= " + starStat);
+                if (collectStars.get(num) == null && starStat.equals("#ffb021")){
+                     collectStars.put(num, 1);
+                } else if (collectStars.get(num) != null  && starStat.equals("#ffb021")) {
+                     int tempInt = collectStars.get(num);
+                     tempInt++;
+                     collectStars.put(num, tempInt);
+                }
+            }
+        }
+        System.out.println(collectStars);
+        for (String s: collectStars.keySet()){
+            String tempFeedback = allFeedbacksToSave.get(s);
+            tempFeedback += collectStars.get(s);
+            allFeedbacksToSave.put(s, tempFeedback);
+        }
 
-        return  null;
     }
 // Clean Strind from "\n"
     public static String clearStr(String string){
@@ -72,8 +99,7 @@ public class WebDrivingTwo {
 //                Убираем перенос строки если есть
                 text = clearStr(text);
 
-                if(textTag != null && text != null
-                        && isInString(regexp, textTag)){
+                if(textTag != null && isInString(regexp, textTag)){
 //                    gen num of the feedback
                     String num =  getStringByRegexp("(\\d++)", textTag);
                     String temp = allFeedbacksToSave.get(num);
