@@ -7,16 +7,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.annotation.RegEx;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WebDriving {
     public static List<String> getFeedBacksList() {
         return feedBacksList;
     }
 
+    public static Map<Integer, String> allFeedbacksToSave = new HashMap<>();
+
     public static List<String> feedBacksList = new ArrayList<>();
+
 
     public void driveWeb() {
     WebDriver driver = new ChromeDriver();
@@ -64,7 +72,22 @@ public class WebDriving {
 
             }
         }
-        driver.quit();
+        driver.close();
+    }
+
+//  проверяем наличие регехп
+    public static String getStringByRegexp(String regEx, String text){
+        String result = null;
+        Pattern pattern = Pattern.compile(String.valueOf(regEx));
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()){
+            result = text.substring(matcher.start(), matcher.end());
+        }
+        return result;
+    }
+    public static boolean isInString(String regexp, String text){
+        if (text.matches(regexp)) return true;
+        return false;
     }
 
 }
