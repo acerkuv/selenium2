@@ -117,11 +117,9 @@ public class WebDrivingTwo {
     }
 // Clean Strind from "\n"
     public static String clearStr(String string){
-        String temp = string.replace("\n", " ");
-        temp = temp.replace(";", " ");
-        return temp;
+        return string.replace("\n", " ");
     }
-//    check the tag on
+//    Ищем нужный тег
     public static void checkTheTagAndText(String regexp , List<WebElement> webElements){
         for (WebElement w: webElements){
             if(w != null){

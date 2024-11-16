@@ -8,10 +8,10 @@ public class Main {
 
 //      ta:  "https://www.avito.ru/brands/i338763229/all/avtomobili?src=search_seller_info&sellerId=ebbe929fc98793a9837e611c17a5c95b"
 
-        WebDrivingTwo webDrivingTwo = new WebDrivingTwo("https://www.avito.ru/brands/rolf_aeroport/all/avtomobili?src=search_seller_info&sellerId=d9c13ba34986af3bf069fe3c73bd66cf");
+        WebDrivingTwo webDrivingTwo = new WebDrivingTwo("https://www.avito.ru/brands/i195276908/all?src=search_seller_info&sellerId=9455326a5ed54207e344928caea60671");
         webDrivingTwo.runToParse();
 
-        WriteToFileTwo writeToFileTwo = new WriteToFileTwo("rolf-aeroport.csv");
+        WriteToFileTwo writeToFileTwo = new WriteToFileTwo("iStore-shop116.csv");
         Map<String, String> allFeedbacks = WebDrivingTwo.getAllFeedbacksToSave();
 
         writeToFileTwo.write(allFeedbacks);
