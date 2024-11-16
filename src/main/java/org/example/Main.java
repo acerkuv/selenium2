@@ -5,13 +5,14 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        WebDrivingTwo webDrivingTwo = new WebDrivingTwo();
-        WebDrivingTwo.runToParse();
 
-        WriteToFileTwo writeToFileTwo = new WriteToFileTwo("fb.csv");
+//      ta:  "https://www.avito.ru/brands/i338763229/all/avtomobili?src=search_seller_info&sellerId=ebbe929fc98793a9837e611c17a5c95b"
+
+        WebDrivingTwo webDrivingTwo = new WebDrivingTwo("https://www.avito.ru/brands/rolf_aeroport/all/avtomobili?src=search_seller_info&sellerId=d9c13ba34986af3bf069fe3c73bd66cf");
+        webDrivingTwo.runToParse();
+
+        WriteToFileTwo writeToFileTwo = new WriteToFileTwo("rolf-aeroport.csv");
         Map<String, String> allFeedbacks = WebDrivingTwo.getAllFeedbacksToSave();
-//        allFeedbacks = (Map<String, String>) allFeedbacks.entrySet()
-//                .stream().sorted(Map.Entry.<String, String>comparingByKey().reversed());
 
         writeToFileTwo.write(allFeedbacks);
     }

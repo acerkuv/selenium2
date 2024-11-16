@@ -1,12 +1,8 @@
 package org.example;
 
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-
 
 public class WriteToFileTwo {
     public WriteToFileTwo(String filename) {
@@ -17,7 +13,7 @@ public class WriteToFileTwo {
         File myFile = new File(filename);
         FileOutputStream outputStream = new FileOutputStream(myFile);
 //        heder
-        String headerStr = "Номер;Имя;Дата;Отзыв\n";
+        String headerStr = "Номер;Имя;Дата;Отзыв;Звезд;Фото\n";
         byte[] first = headerStr.getBytes(StandardCharsets.UTF_8);
         outputStream.write(first);
         for (String s: values.keySet()){

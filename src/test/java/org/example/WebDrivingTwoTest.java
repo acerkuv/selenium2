@@ -20,7 +20,7 @@ class WebDrivingTwoTest {
     void getStringByRegexpT() {
         String s = "review(3)/score/star4";
 
-        assertEquals("3", getStringByRegexp("\\d+",s));
+        assertEquals("3)", getStringByRegexp("\\d+.",s));
     }
 
 }
